@@ -1,4 +1,4 @@
-curl "https://framaforms.org/inventaire-des-mouvements-sociaux-1578921708/public-results" 2>/dev/null | grep -i -e '</\?TD\|</\?TR' | sed 's/^[\ \t]*//g' | tr -d '\n\r' | sed 's/<\/TR[^>]*>/\n/Ig' | sed 's/<\/T[DH][^>]*><T[DH][^>]*>/,/Ig' | sed 's/^<T[DH][^>]*>\|<\/\?T[DH][^>]*>$//Ig' | sed 's/<T[RD][^>]*>//Ig' | sed 's/<a[^>]*>//Ig' | sed 's/<\/a>//Ig' | sed 's/<span[^>]*>//Ig' | sed 's/<\/span>//Ig' | sed 's/          //Ig' > data.csv
+curl "https://framaforms.org/inventaire-des-mouvements-sociaux-1578921708/public-results" 2>/dev/null | grep -i -e '</\?TD\|</\?TR' | sed 's/^[\ \t]*//g' | tr -d '\n\r' | sed 's/<\/TR[^>]*>/\n/Ig' | sed 's/<TR[^>]*>//Ig' | sed 's/<TD[^>]*>/"/Ig'  | sed 's/<\/TD[^>]*>/",/Ig' | sed 's/<a[^>]*>//Ig' | sed 's/<\/a>//Ig' | sed 's/<span[^>]*>//Ig' | sed 's/<\/span>//Ig' | sed 's/          //Ig' > data.csv
 echo "Data from FramaForm extracted."
 
 data=''
@@ -42,8 +42,16 @@ do
 		export IFS=","
 		file=""
 		#For each values, get the parameter, the latitude and the longitude and write it as geojson
+		oldVal=""
 		for val in $line
 		do
+			if [ "\"" != "${val: -1}" ]
+			then
+				oldVal=$oldVal','$val
+				continue
+			fi
+			val=$oldVal$val
+			val=${val:1:-1}
 			export IFS=
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
@@ -101,6 +109,7 @@ do
 			fi
 			i=$(($i+1))
 			export IFS=","
+			oldVal=""
 		done
 		export IFS=
 		echo '{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}},' >> $file
@@ -163,5 +172,5 @@ echo ']}' >> justice.geojson
 echo ']}' >> securite.geojson
 echo ']}' >> indus_energie.geojson
 echo ']}' >> autres.geojson
-rm data.csv
+#rm data.csv
 echo "Result files closed."
