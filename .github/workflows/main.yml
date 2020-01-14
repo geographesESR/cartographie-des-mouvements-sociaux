@@ -2,12 +2,7 @@
 name: extraction
 on:
   schedule:
-    - cron: '*/5 * * * *'
-    - cron: '49 15 * * *'
-    - cron: '00 07 * * *'
-    - cron: '30 10 * * *'
-    - cron: '30 13 * * *'
-    - cron: '00 16 * * *'
+    - cron: '0 * * * *'
       
 jobs:
   build:
