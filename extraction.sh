@@ -58,7 +58,6 @@ do
 				val=${oldVal:1}','$val
 			fi
 			val=${val:1:-1}
-			echo $val
 			export IFS=
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
@@ -179,5 +178,5 @@ echo ']}' >> justice.geojson
 echo ']}' >> securite.geojson
 echo ']}' >> indus_energie.geojson
 echo ']}' >> autres.geojson
-#rm data.csv
+rm data.csv
 echo "Result files closed."
