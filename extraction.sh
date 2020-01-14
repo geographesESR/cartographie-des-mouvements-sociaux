@@ -30,7 +30,8 @@ echo "Result file prepared."
 
 #Read data.csv and put each line in the good geojson file
 while IFS= read -r line
-do
+do	
+	echo $line
 	if $firstLine
 	then
 		firstLine=false	
@@ -42,16 +43,22 @@ do
 		export IFS=","
 		file=""
 		#For each values, get the parameter, the latitude and the longitude and write it as geojson
-		oldVal=""
+		oldVal=
 		for val in $line
 		do
+			export IFS=
 			if [ "\"" != "${val: -1}" ]
 			then
 				oldVal=$oldVal','$val
+				export IFS=","
 				continue
 			fi
-			val=$oldVal$val
+			if [ "" != "$oldVal" ]
+			then
+				val=${oldVal:1}','$val
+			fi
 			val=${val:1:-1}
+			echo $val
 			export IFS=
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
