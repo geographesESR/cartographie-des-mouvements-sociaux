@@ -1,2 +1,3 @@
-# cartographie-des-mouvements-sociaux
-Cartographie des mouvements sociaux
+# Cartographie des mouvements sociaux
+
+Projet de cartographie des mouvements sociaux en France
