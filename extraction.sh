@@ -65,7 +65,7 @@ do
 				elif [ "$val" = "Sécurité civile" ]; then
 					file=securite.geojson
 				elif [ "$val" = "Industrie / Energie" ]; then
-					file=indus_energy.geojson
+					file=indus_energie.geojson
 				elif [ "$val" = "Autres" ]; then
 					file=securite.geojson
 				else
