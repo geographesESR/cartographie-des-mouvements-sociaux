@@ -31,7 +31,6 @@ echo "Result file prepared."
 #Read data.csv and put each line in the good geojson file
 while IFS= read -r line
 do	
-	echo $line
 	if $firstLine
 	then
 		firstLine=false	
