@@ -163,4 +163,5 @@ echo ']}' >> justice.geojson
 echo ']}' >> securite.geojson
 echo ']}' >> indus_energie.geojson
 echo ']}' >> autres.geojson
+rm data.csv
 echo "Result files closed."
