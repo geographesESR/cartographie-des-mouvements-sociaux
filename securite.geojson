@@ -1,0 +1,2 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","properties":{"Secteur":"Sécurité civile","Titre":"Test 2 à Bordeaux","Description":"Test","Type":"Grève","Motif":"","Date de début":"15/01/2020","Date de fin":"","Source":"deadaed"},"geometry":{"type":"Point","coordinates":[-0.5792,44.8378]}}]}
