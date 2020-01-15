@@ -1586,6 +1586,11 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+@media (min-width: 450px) {
+  .container {
+    width: 441px;
+  }
+}
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -1598,7 +1603,17 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1800px;
+    width: 1170px;
+  }
+}
+@media (min-width: 1500px) {
+  .container {
+    width: 1470px;
+  }
+}
+@media (min-width: 1800px) {
+  .container {
+    width: 1765px;
   }
 }
 .container-fluid {
