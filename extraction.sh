@@ -62,7 +62,7 @@ do
 			val=${val:1:-1}
 			export IFS=
 			if [ "$i" = "$idIndex" ]; then
-				properties=$properties'"Id":"'$val'",'
+				properties=$properties'"Id":"'${val:1}'",'
 			fi
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
