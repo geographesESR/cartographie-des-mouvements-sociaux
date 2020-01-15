@@ -86,7 +86,7 @@ do
 				elif [ "$val" = "Industrie / Energie" ]; then
 					file=indus_energie.geojson
 				elif [ "$val" = "Autre" ]; then
-					file=securite.geojson
+					file=autres.geojson
 				else
 					echo "sector not found : $val"
 				fi
