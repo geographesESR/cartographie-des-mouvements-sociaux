@@ -3,6 +3,9 @@ echo "Data from FramaForm extracted."
 
 data=''
 firstLine=true
+idIndex=0
+subDateIndex=1
+userIndex=2
 sectorIndex=3
 titleIndex=4
 descriptionIndex=5
@@ -58,6 +61,9 @@ do
 			fi
 			val=${val:1:-1}
 			export IFS=
+			if [ "$i" = "$idIndex" ]; then
+				properties=$properties'"Id":"'$val'",'
+			fi
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
 				#Get from the 'Secteur' the file where the data should be written
