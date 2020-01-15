@@ -104,10 +104,10 @@ do
 				properties=$properties'"Motif":"'$val'",'
 			fi
 			if [ "$i" = "$startIndex" ]; then
-				properties=$properties'"Date de début":"'$val'",'
+				properties=$properties'"Debut":"'$val'",'
 			fi
 			if [ "$i" = "$endIndex" ]; then
-				properties=$properties'"Date de fin":"'$val'",'
+				properties=$properties'"Fin":"'$val'",'
 			fi
 			if [ "$i" = "$sourceIndex" ]; then
 				properties=$properties'"Source":"'$val'"'
