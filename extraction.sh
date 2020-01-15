@@ -1,4 +1,4 @@
-curl "https://framaforms.org/inventaire-des-mouvements-sociaux-1578921708/public-results" 2>/dev/null | grep -i -e '</\?TD\|</\?TR' | sed 's/^[\ \t]*//g' | tr -d '\n\r' | sed 's/<\/TR[^>]*>/\n/Ig' | sed 's/<TR[^>]*>//Ig' | sed 's/<TD[^>]*>/"/Ig'  | sed 's/<\/TD[^>]*>/",/Ig' | sed 's/<a[^>]*>//Ig' | sed 's/<\/a>//Ig' | sed 's/<span[^>]*>//Ig' | sed 's/<\/span>//Ig' | sed 's/          //Ig' > data.csv
+curl "https://framaforms.org/inventaire-des-mouvements-sociaux-1578921708/public-results" 2>/dev/null | grep -i -e '</\?TD\|</\?TR' | sed 's/^[\ \t]*//g' | tr -d '\n\r' | sed 's/<\/TR[^>]*>/\n/Ig' | sed 's/<TR[^>]*>//Ig' | sed 's/"/\\"/Ig' | sed 's/<TD[^>]*>/"/Ig'  | sed 's/<\/TD[^>]*>/",/Ig' | sed 's/<a[^>]*>//Ig' | sed 's/<\/a>//Ig' | sed 's/<span[^>]*>//Ig' | sed 's/<\/span>//Ig' | sed 's/          //Ig' > data.csv
 echo "Data from FramaForm extracted."
 
 data=''
