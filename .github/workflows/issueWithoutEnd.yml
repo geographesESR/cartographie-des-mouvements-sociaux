@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
     - name: Close previous issue
       uses: bdougie/close-issues-based-on-label@master
       env:
@@ -22,7 +21,7 @@ jobs:
       run: bash groovy-3.0.0-rc-3/bin/groovy generateIssueNoEndEvent.groovy
       
     - uses: peter-evans/create-issue-from-file@v2
-    - name: Create the issue
+      name: Create the issue
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         title: Event without end
