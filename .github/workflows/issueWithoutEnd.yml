@@ -1,0 +1,29 @@
+name: Issue event without end
+
+on: 
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Close previous issue
+        uses: bdougie/close-issues-based-on-label@master
+        env:
+          LABEL: event without end
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v1
+      - name: Generate the issue text
+        run: bash groovy-3.0.0-rc-3/bin/groovy generateIssueNoEndEvent.groovy
+      
+      - uses: peter-evans/create-issue-from-file@v2
+        name: Create the issue
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Event without end
+          content-filepath: ./eventWithoutEnd.md
+          labels: event without end
