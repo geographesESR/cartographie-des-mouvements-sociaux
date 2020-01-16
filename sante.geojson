@@ -1,2 +1,2 @@
 {"type":"FeatureCollection","features":[
-]}
+{"type":"Feature","properties":{"Id":"65","Secteur":"Santé","Titre":"Urgence de Redon","Description":"Grève aux Urgences de Redon","Type":"Grève","Motif":"Autre","Debut":"19/07/2019","Fin":"","Source":"https://www.facebook.com/GreveUrgRedon/"},"geometry":{"type":"Point","coordinates":[-2.0801,47.6537]}}]}
