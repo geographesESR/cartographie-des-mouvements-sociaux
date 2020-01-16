@@ -9,4 +9,6 @@ Pour alimenter la carte, veuillez renseigner le formulaire anonyme suivant : htt
 
 ## Comment ça marche ?
 
-Les données issues du questionnaire en ligne sont séparées par secteur, puis converties en couche `.geojson`, accessibles dans ce dépôt et fournies selon les termes de la licence [ODbL](https://spdx.org/licenses/ODbL-1.0.html#licenseText). Ces couches servent ensuite à alimenter dynamiquement la carte en ligne.
+Les données issues du questionnaire en ligne sont séparées par secteur, puis converties en couches `.geojson`, accessibles dans ce dépôt et fournies selon les termes de la licence [ODbL](https://spdx.org/licenses/ODbL-1.0.html#licenseText). Ces couches servent ensuite à alimenter dynamiquement la carte en ligne.
+
+Avant d'être intégrées, les données sont contrôlées et les potentiels doublons sont supprimés.
