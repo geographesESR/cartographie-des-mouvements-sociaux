@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 import java.io.File 
 
 def issueFile = new File("eventWithoutEnd.md")
-issueFile.text = ""
+issueFile.text = "List of the id of event without end date : "
 def jsonSlurper = new JsonSlurper()
 def count = 0
 def files = ["autres.geojson", "culture.geojson", "education.geojson", "esr.geojson", "indus_energie.geojson", "justice.geojson", "multi.geojson", "sante.geojson", "securite.geojson", "transport.geojson"]
