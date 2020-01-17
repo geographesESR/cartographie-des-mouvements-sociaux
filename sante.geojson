@@ -1,2 +1,5 @@
 {"type":"FeatureCollection","features":[
-]}
+{"type":"Feature","properties":{"Id":"68","Secteur":"Santé","Titre":"Urgences CHU Besançon","Description":"Service d’Urgences en grève.","Type":"Grève","Motif":"Autre","Debut":"01/01/2020","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[5.9625,47.2254]}},
+{"type":"Feature","properties":{"Id":"67","Secteur":"Santé","Titre":"Urgences CHU CAEN","Description":"Services d’Urgences en grève","Type":"Grève","Motif":"Autre","Debut":"01/01/2020","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[-0.3577,49.2057]}},
+{"type":"Feature","properties":{"Id":"66","Secteur":"Santé","Titre":"Urgences CHU Rennes","Description":"Services d’Urgences en grève","Type":"Grève","Motif":"Autre","Debut":"01/01/2020","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[-1.6950,48.1201]}},
+{"type":"Feature","properties":{"Id":"65","Secteur":"Santé","Titre":"Urgence de Redon","Description":"Grève aux Urgences de Redon","Type":"Grève","Motif":"Autre","Debut":"19/07/2019","Fin":"","Source":"https://www.facebook.com/GreveUrgRedon/"},"geometry":{"type":"Point","coordinates":[-2.0801,47.6537]}}]}
