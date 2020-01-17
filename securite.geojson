@@ -1,2 +1,2 @@
 {"type":"FeatureCollection","features":[
-]}
+,{"type":"Feature","properties":{"Id":"116","Secteur":"Sécurité civile","Titre":"Manifestation des pompiers à Strasbourg","Description":"Arrivés devant le palais de justice de Strasbourg, où ils ont déposé un cercueil, les pompiers se couchent en signe de protestation","Type":"Manifestation","Motif":"Retraite","Debut":"17/01/2020","Fin":"17/01/2020","Source":"https://twitter.com/dnatweets/status/1218106399814832128"},"geometry":{"type":"Point","coordinates":[7.7459,48.5902]}}]}
