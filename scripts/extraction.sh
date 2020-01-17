@@ -126,7 +126,7 @@ do
 		export IFS=
 		if [ $write = true ]
 		then
-			sed 's/.\{2\}$//' $file > $file
+			echo `sed 's/.\{2\}$//' $file` > $file
 			echo ',{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}}]}' >> $file
 		fi
 		export IFS=","
