@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@v1
       - name: Generate the issue text
-        run: bash groovy-3.0.0-rc-3/bin/groovy generateIssueNoEndEvent.groovy
+        run: bash groovy-3.0.0-rc-3/bin/groovy scripts/generateIssueNoEndEvent.groovy
       
       - uses: peter-evans/create-issue-from-file@v2
         name: Create the issue
