@@ -17,6 +17,11 @@ startIndex=10
 endIndex=11
 sourceIndex=12
 i=0
+lastIndex=""
+
+typeset -i indexFramaform=$(cat scripts/index.framaform)
+echo $indexFramaform
+
 
 #Prepare files
 echo '{"type":"FeatureCollection","features":[' > multi.geojson
@@ -38,6 +43,7 @@ do
 	then
 		firstLine=false	
 	else
+		
 		i=0
 		lat=0
 		lon=0
@@ -46,6 +52,7 @@ do
 		file=""
 		#For each values, get the parameter, the latitude and the longitude and write it as geojson
 		oldVal=
+		write=false
 		for val in $line
 		do
 			export IFS=
@@ -63,6 +70,14 @@ do
 			export IFS=
 			if [ "$i" = "$idIndex" ]; then
 				properties=$properties'"Id":"'${val:1}'",'
+				typeset -i index="${val:1}"
+				if [ "$indexFramaform" -lt "$index" ]; then
+					write=true
+					if [ "$lastIndex" = "" ]; then
+						lastIndex=${val:1}
+					fi
+					echo $lastIndex
+				fi
 			fi
 			if [ "$i" = "$sectorIndex" ]; then
 				properties=$properties'"Secteur":"'$val'",'
@@ -123,7 +138,10 @@ do
 			oldVal=""
 		done
 		export IFS=
-		echo '{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}},' >> $file
+		if [ $write = true ]
+		then
+			echo '{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}},' >> $file
+		fi
 		export IFS=","
 	fi
 	export IFS=
@@ -184,4 +202,9 @@ echo ']}' >> securite.geojson
 echo ']}' >> indus_energie.geojson
 echo ']}' >> autres.geojson
 rm data.csv
+if [ "$lastIndex" = "" ]; then
+	echo $indexFramaform > scripts/index.framaform
+else
+	echo $lastIndex > scripts/index.framaform
+fi
 echo "Result files closed."
