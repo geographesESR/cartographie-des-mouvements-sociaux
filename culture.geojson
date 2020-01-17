@@ -1,2 +1,2 @@
 {"type":"FeatureCollection","features":[
-]}
+{"type":"Feature","properties":{"Id":"69","Secteur":"Culture","Titre":"Grand Choeur des Esclaves","Description":"Partitions ici https://1drv.ms/u/s!AtSHW2whfdn3kG-yBzJVhjSODozj?e=...","Type":"Manifestation","Motif":"Retraite","Debut":"18/01/2020","Fin":"18/01/2020","Source":"Personnels mobilisés Aix-Marseille Université"},"geometry":{"type":"Point","coordinates":[5.3741,43.2946]}}]}
