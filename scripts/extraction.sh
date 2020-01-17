@@ -22,20 +22,6 @@ lastIndex=""
 typeset -i indexFramaform=$(cat scripts/index.framaform)
 echo $indexFramaform
 
-
-#Prepare files
-echo '{"type":"FeatureCollection","features":[' > multi.geojson
-echo '{"type":"FeatureCollection","features":[' > esr.geojson
-echo '{"type":"FeatureCollection","features":[' > education.geojson
-echo '{"type":"FeatureCollection","features":[' > sante.geojson
-echo '{"type":"FeatureCollection","features":[' > culture.geojson
-echo '{"type":"FeatureCollection","features":[' > transport.geojson
-echo '{"type":"FeatureCollection","features":[' > justice.geojson
-echo '{"type":"FeatureCollection","features":[' > securite.geojson
-echo '{"type":"FeatureCollection","features":[' > indus_energie.geojson
-echo '{"type":"FeatureCollection","features":[' > autres.geojson
-echo "Result file prepared."
-
 #Read data.csv and put each line in the good geojson file
 while IFS= read -r line
 do	
@@ -140,7 +126,8 @@ do
 		export IFS=
 		if [ $write = true ]
 		then
-			echo '{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}},' >> $file
+			sed 's/.\{2\}$//' $file
+			echo ',{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}}]}' >> $file
 		fi
 		export IFS=","
 	fi
@@ -148,59 +135,6 @@ do
 done < data.csv
 echo "Data converted to geojson."
 
-#remove las comma if needed
-if [ `tail -c 2 multi.geojson` = "," ]
-then
-	truncate -s-2 multi.geojson
-fi
-if [ `tail -c 2 esr.geojson` = "," ]
-then
-	truncate -s-2 esr.geojson
-fi
-if [ `tail -c 2 education.geojson` = "," ]
-then
-	truncate -s-2 education.geojson
-fi
-if [ `tail -c 2 sante.geojson` = "," ]
-then
-	truncate -s-2 sante.geojson
-fi
-if [ `tail -c 2 culture.geojson` = "," ]
-then
-	truncate -s-2 culture.geojson
-fi
-if [ `tail -c 2 transport.geojson` = "," ]
-then
-	truncate -s-2 transport.geojson
-fi
-if [ `tail -c 2 justice.geojson` = "," ]
-then
-	truncate -s-2 justice.geojson
-fi
-if [ `tail -c 2 securite.geojson` = "," ]
-then
-	truncate -s-2 securite.geojson
-fi
-if [ `tail -c 2 indus_energie.geojson` = "," ]
-then
-	truncate -s-2 indus_energie.geojson
-fi
-if [ `tail -c 2 autres.geojson` = "," ]
-then
-	truncate -s-2 autres.geojson
-fi
-
-#Close files
-echo ']}' >> multi.geojson
-echo ']}' >> esr.geojson
-echo ']}' >> education.geojson
-echo ']}' >> sante.geojson
-echo ']}' >> culture.geojson
-echo ']}' >> transport.geojson
-echo ']}' >> justice.geojson
-echo ']}' >> securite.geojson
-echo ']}' >> indus_energie.geojson
-echo ']}' >> autres.geojson
 rm data.csv
 if [ "$lastIndex" = "" ]; then
 	echo $indexFramaform > scripts/index.framaform
