@@ -18,7 +18,7 @@ jobs:
           git checkout -b PR
           git config --local user.email "geographesESR@protonmail.com"
           git config --local user.name "geographesESR"
-          bash extraction.sh
+          bash scripts/extraction.sh
           git add *
           git commit -m "Add changes" -a
       - name: Push changes
