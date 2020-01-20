@@ -12,7 +12,7 @@ for (line in geojsonSante){
 geojsonSante.text = clean
 
 //Adds new interurgences data
-def file = new File("INTER URGENCES.kml")
+def file = new File("INTER_URGENCES.kml")
 def kml = new XmlSlurper().parse(file)
 assert kml
 assert kml.Document
