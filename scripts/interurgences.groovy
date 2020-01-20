@@ -9,6 +9,7 @@ for (line in geojsonSante){
 		clean += line+"\n"
 	}
 }
+println clean
 geojsonSante.text = clean - "\n]}"
 
 //Adds new interurgences data
