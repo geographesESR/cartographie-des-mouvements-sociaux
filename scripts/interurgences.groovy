@@ -6,7 +6,6 @@ def geojsonSante = new File("sante.geojson")
 def clean = ""
 for (line in geojsonSante){
 	if(!line.contains('"Id":"interurgence_')){
-		println line
 		clean += line + "\n"
 	}
 }
