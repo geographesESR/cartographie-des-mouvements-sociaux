@@ -13,7 +13,7 @@ geojsonSante.text = clean - "\n]}"
 
 //Adds new interurgences data
 def empty = false
-if(geojsonSante.text == '{"type": "FeatureCollection","features": [\n'){
+if(geojsonSante.text == '{"type":"FeatureCollection","features":[\n'){
 	empty = true
 }
 def file = new File("INTER_URGENCES.kml")
