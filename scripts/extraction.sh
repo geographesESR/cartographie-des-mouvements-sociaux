@@ -22,11 +22,6 @@ lastIndex=""
 typeset -i indexFramaform=$(cat scripts/index.framaform)
 echo $indexFramaform
 
-#Write data from interurgences
-curl "https://www.google.com/maps/d/kml?mid=1QuZ2EogIgvffjcNC_-w4C22LUsgsUPoM&forcekml=1" > "INTER_URGENCES.kml" 
-bash apache-groovy-binary-3.0.0-rc-3/groovy-3.0.0-rc-3/bin/groovy scripts/interurgences.groovy
-rm "INTER_URGENCES.kml"
-
 #Read data.csv and put each line in the good geojson file
 while IFS= read -r line
 do	
@@ -147,3 +142,8 @@ else
 	echo $lastIndex > scripts/index.framaform
 fi
 echo "Result files closed."
+
+#Write data from interurgences
+curl "https://www.google.com/maps/d/kml?mid=1QuZ2EogIgvffjcNC_-w4C22LUsgsUPoM&forcekml=1" > "INTER_URGENCES.kml" 
+bash apache-groovy-binary-3.0.0-rc-3/groovy-3.0.0-rc-3/bin/groovy scripts/interurgences.groovy
+rm "INTER_URGENCES.kml"
