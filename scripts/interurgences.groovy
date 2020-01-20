@@ -43,10 +43,10 @@ for(placemark in folder.Placemark) {
 	geojsonStr += '"Motif":"Hôpital en danger",'
 	geojsonStr += '"Debut":"",'
 	geojsonStr += '"Fin":"",'
-	geojsonStr += '"Source":https://www.interurgences.fr/carte-de-france/"'
+	geojsonStr += '"Source":"https://www.interurgences.fr/carte-de-france/"'
 	geojsonStr += '},"geometry":{"type":"Point","coordinates":['
 	geojsonStr += placemark.Point.coordinates.text().trim()
 	geojsonStr += ']}}\n'
 	geojsonSante << geojsonStr
 }
-geojsonSante << "]}"
+geojsonSante << "]}\n"
