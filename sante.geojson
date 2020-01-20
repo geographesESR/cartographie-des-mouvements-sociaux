@@ -1,4 +1,4 @@
-{"type": "FeatureCollection","features": [
+{"type":"FeatureCollection","features":[
 {"type":"Feature","properties":{"Id":"interurgence_197.0","Secteur":"Santé","Titre":"Urgences en grève : Rennes","Description":"TYPHAINE","Type":"Grève","Motif":"Hôpital en danger","Debut":"","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[-1.6973833,48.1135475,0]}}
 ,{"type":"Feature","properties":{"Id":"interurgence_39.0","Secteur":"Santé","Titre":"Urgences en grève : Brest (2)","Description":"Ped+adulte","Type":"Grève","Motif":"Hôpital en danger","Debut":"","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[-4.4879107,48.3915254,0]}}
 ,{"type":"Feature","properties":{"Id":"interurgence_111.0","Secteur":"Santé","Titre":"Urgences en grève : Lannion","Description":"","Type":"Grève","Motif":"Hôpital en danger","Debut":"","Fin":"","Source":"https://www.interurgences.fr/carte-de-france/"},"geometry":{"type":"Point","coordinates":[-3.4551958,48.7260043,0]}}
