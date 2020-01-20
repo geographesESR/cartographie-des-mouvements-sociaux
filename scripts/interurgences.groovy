@@ -7,7 +7,7 @@ def clean = ""
 for (line in geojsonSante){
 	if(!line.contains('"Id":"interurgence_')){
 		println line
-		clean += line
+		clean += line + "\n"
 	}
 }
 geojsonSante.text = clean
