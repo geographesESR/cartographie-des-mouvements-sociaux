@@ -36,7 +36,7 @@ for(placemark in folder.Placemark) {
 		geojsonStr += ','
 	}
 	geojsonStr += '{"type":"Feature","properties":{'
-	geojsonStr += '"Id":"interurgence_' + placemark.ExtendedData.Data[0].value.text().trim() + '",'
+	geojsonStr += '"Id":"interurgence_' + (placemark.ExtendedData.Data[0].value.text().trim()-".0") + '",'
 	geojsonStr += '"Secteur":"Santé",'
 	geojsonStr += '"Titre":"Urgences en grève : ' + placemark.name.text().trim() + '",'
 	geojsonStr += '"Description":"' + placemark.ExtendedData.Data[1].value.text().trim() + '",'
