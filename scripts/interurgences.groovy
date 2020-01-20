@@ -9,7 +9,6 @@ for (line in geojsonSante){
 		clean += line+"\n"
 	}
 }
-println geojsonSante.text
 geojsonSante.text = clean - "\n]}"
 
 //Adds new interurgences data
