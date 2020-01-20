@@ -237,3 +237,4 @@
 { "type": "Feature", "properties": { "Id": "436", "Secteur": "Santé", "Titre": "Centre Hospitalier Alpes-Leman Hôpital findrol", "Description": "47.0", "Type": "Grève", "Motif": "Autre", "Debut": "19/01/2020", "Fin": "", "Source": "https:www.interurgences.fr" }, "geometry": { "type": "Point", "coordinates": [ 6.3202342, 46.1409287, 0.0 ] } }
 ]
 }
+]}
