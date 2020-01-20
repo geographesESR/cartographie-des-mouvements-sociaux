@@ -127,7 +127,8 @@ do
 		if [ $write = true ]
 		then
 			echo `sed '$ s/..$//' $file` > $file
-			echo ',{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}}]}' >> $file
+			echo ',{"type":"Feature","properties":{'$properties'},"geometry":{"type":"Point","coordinates":['$lon','$lat']}}' >> $file
+			echo ']}' >> $file
 		fi
 		export IFS=","
 	fi
