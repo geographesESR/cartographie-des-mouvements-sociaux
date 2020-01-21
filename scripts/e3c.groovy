@@ -35,7 +35,7 @@ for(placemark in folder.Placemark) {
 	else{
 		geojsonStr += ','
 	}
-	def addr = (placemark.name.text()+","+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
+	def addr = (placemark.name.text()+","+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll("lycée hôtelier ", "lycée ").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
 	if(!addr.startsWith("lycée")){
 		addr = "lycée "+addr
 	}
@@ -55,8 +55,14 @@ for(placemark in folder.Placemark) {
 							if(!features){
 								features = query(addr.replaceAll("lycée", "lycée international").replaceAll(" ", "%20"))
 								if(!features){
-									println "Error on : "+addr
-									continue
+									features = query(addr.replaceAll("lycée", "cité scolaire").replaceAll(" ", "%20"))
+									if(!features){
+										features = query(addr.replaceAll("\(.*)", "").replaceAll(" ", "%20"))
+										if(!features){
+											println "Error on : "+addr
+											continue
+										}
+									}
 								}
 							}
 						}
