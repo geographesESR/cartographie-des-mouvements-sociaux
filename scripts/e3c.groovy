@@ -24,7 +24,6 @@ assert kml.Document
 assert kml.Document.Folder.size() >= 1
 
 def folder = kml.Document.Folder[0]
-assert folder.name.text().startsWith("Lycées mobilisés contre les E3C")
 assert folder.Placemark.size() > 0
 
 def i=1
