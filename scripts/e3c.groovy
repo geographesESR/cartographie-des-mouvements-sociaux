@@ -85,7 +85,7 @@ for(placemark in folder.Placemark) {
 	geojsonStr += '"Motif":"E3C",'
 	geojsonStr += '"Debut":"' + placemark.ExtendedData.Data[3].value.text().trim() + '",'
 	geojsonStr += '"Fin":"",'
-	geojsonStr += '"Source":"Pour en savoir plus, consultez le site https://frama.link/carte-resistances-e3c du collectif \"Stop Bac Blanquer - Stop E3C\" dont sont issues les données"'
+	geojsonStr += '"Source":"Pour en savoir plus, consultez le site https://frama.link/carte-resistances-e3c du collectif \\\"Stop Bac Blanquer - Stop E3C\\\" dont sont issues les données"'
 	geojsonStr += '},"geometry":{"type":"Point","coordinates":['
 	geojsonStr += coordinates
 	geojsonStr += ']}}\n'
