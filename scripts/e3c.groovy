@@ -73,7 +73,7 @@ for(placemark in folder.Placemark) {
 		coordinates = geometry.coordinates[1]+","+geometry.coordinates[0]
 	}
 	else if(geometry.type == "Polygon"){
-		coordinates = ((bbox[2]-bbox[4])/2)+","+((bbox[2]-bbox[4])/2)
+		coordinates = ((bbox[1]-bbox[3])/2)+","+((bbox[0]-bbox[2])/2)
 	}
 
 	geojsonStr += '{"type":"Feature","properties":{'
