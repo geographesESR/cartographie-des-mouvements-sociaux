@@ -150,6 +150,6 @@ bash apache-groovy-binary-3.0.0-rc-3/groovy-3.0.0-rc-3/bin/groovy scripts/interu
 rm "INTER_URGENCES.kml"
 
 #write data from the E3C mobilisation
-curl "https://www.google.com/maps/d/kml?mid=1f7llY9_svRQv_3zJ5bbh37kwXLER430V&forcekml=1" > "MOBILISATION_E3C.kml" 
-bash apache-groovy-binary-3.0.0-rc-3/groovy-3.0.0-rc-3/bin/groovy scripts/e3c.groovy
-rm "MOBILISATION_E3C.kml"
+#curl "https://www.google.com/maps/d/kml?mid=1f7llY9_svRQv_3zJ5bbh37kwXLER430V&forcekml=1" > "MOBILISATION_E3C.kml" 
+#bash apache-groovy-binary-3.0.0-rc-3/groovy-3.0.0-rc-3/bin/groovy scripts/e3c.groovy
+#rm "MOBILISATION_E3C.kml"
