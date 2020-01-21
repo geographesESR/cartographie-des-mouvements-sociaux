@@ -70,10 +70,10 @@ for(placemark in folder.Placemark) {
 	def bbox = f.bbox[2]
 	def coordinates
 	if(geometry.type == "Point"){
-		coordinates = geometry.coordinates[1]+","+geometry.coordinates[0]
+		coordinates = geometry.coordinates[0]+","+geometry.coordinates[1]
 	}
 	else if(geometry.type == "Polygon"){
-		coordinates = ((bbox[1]-bbox[3])/2)+","+((bbox[0]-bbox[2])/2)
+		coordinates = ((bbox[0]-bbox[2])/2)+","+((bbox[1]-bbox[3])/2)
 	}
 
 	geojsonStr += '{"type":"Feature","properties":{'
