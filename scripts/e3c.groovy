@@ -57,7 +57,7 @@ for(placemark in folder.Placemark) {
 								if(!features){
 									features = query(addr.replaceAll("lycée", "cité scolaire").replaceAll(" ", "%20"))
 									if(!features){
-										features = query(addr.replaceAll("\(.*)", "").replaceAll(" ", "%20"))
+										features = query(addr.replaceAll("\\(.*)", "").replaceAll(" ", "%20"))
 										if(!features){
 											println "Error on : "+addr
 											continue
