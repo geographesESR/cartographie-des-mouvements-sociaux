@@ -23,7 +23,13 @@ assert kml
 assert kml.Document
 assert kml.Document.Folder.size() >= 1
 
-def folder = kml.Document.Folder[1]
+def folder
+for(int i=0; i<kml.Document.Folder.size();i++){
+	if(kml.Document.Folder[i].name.text() == "Lycées mobilisés contre les E3C"){
+		folder = kml.Document.Folder[i]
+	}
+}
+assert folder
 assert folder.Placemark.size() > 0
 
 def i=1
