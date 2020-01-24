@@ -51,7 +51,7 @@ def parseOther(def folder, def geojsonEducation, def empty, def prefix){
 		else{
 			geojsonStr += ','
 		}
-		def coordinates = placemark.Point.coordinates
+		def coordinates = placemark.Point.coordinates.text().trim()
 
 		geojsonStr += '{"type":"Feature","properties":{'
 		geojsonStr += '"Id":"mobilisatione3c_' + prefix + '_' + i + '",'
