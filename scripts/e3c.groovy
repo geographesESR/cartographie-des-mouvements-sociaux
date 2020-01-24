@@ -57,7 +57,7 @@ def parseOther(def folder, def geojsonEducation, def empty, def prefix){
 		geojsonStr += '"Id":"mobilisatione3c_' + prefix + '_' + i + '",'
 		geojsonStr += '"Secteur":"Education",'
 		geojsonStr += '"Titre":"Mobilisation E3C : ' + placemark.name.text().trim() + '",'
-		geojsonStr += '"Description":"' + placemark.description.trim().trim() + '",'
+		geojsonStr += '"Description":"' + placemark.description.text().trim() + '",'
 		geojsonStr += '"Type":"Mobilisation",'
 		geojsonStr += '"Motif":"E3C",'
 		geojsonStr += '"Debut":"",'
