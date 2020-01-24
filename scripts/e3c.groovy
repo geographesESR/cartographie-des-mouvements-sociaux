@@ -27,16 +27,16 @@ def folder
 for(int i=0; i<kml.Document.Folder.size();i++){
 	if(kml.Document.Folder[i].name.text() == "Lycées mobilisés contre les E3C"){
 		folder = kml.Document.Folder[i]
-		parseLycee(folder, geojsonEducation)
+		parseLycee(folder, geojsonEducation, empty)
 	}
 	else{
 		folder = kml.Document.Folder[i]
-		parseOther(folder, geojsonEducation, kml.Document.Folder[i].name.text().split()[0].toLowerCase())
+		parseOther(folder, geojsonEducation, empty, kml.Document.Folder[i].name.text().split()[0].toLowerCase())
 	}
 }
 geojsonEducation << "]}\n"
 
-def parseOther(def folder, def geojsonEducation, def prefix){
+def parseOther(def folder, def geojsonEducation, def empty, def prefix){
 	assert folder
 	assert folder.Placemark.size() > 0
 
@@ -69,7 +69,7 @@ def parseOther(def folder, def geojsonEducation, def prefix){
 	}
 }
 
-def parseLycee(def folder, def geojsonEducation){
+def parseLycee(def folder, def geojsonEducation, def empty){
 	assert folder
 	assert folder.Placemark.size() > 0
 
