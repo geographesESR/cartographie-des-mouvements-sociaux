@@ -27,46 +27,88 @@ def folder
 for(int i=0; i<kml.Document.Folder.size();i++){
 	if(kml.Document.Folder[i].name.text() == "Lycées mobilisés contre les E3C"){
 		folder = kml.Document.Folder[i]
-	}
-}
-assert folder
-assert folder.Placemark.size() > 0
-
-def i=1
-for(placemark in folder.Placemark) {
-	def geojsonStr = ''
-	if(empty){
-		empty = false
+		parseLycee(folder, geojsonEducation)
 	}
 	else{
-		geojsonStr += ','
+		folder = kml.Document.Folder[i]
+		parseOther(folder, geojsonEducation, kml.Document.Folder[i].name.text().split()[0].toLowerCase())
 	}
-	def addr = (placemark.name.text()+","+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll(" d ", " d'").replaceAll("lycée hôtelier ", "lycée ").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
-	if(!addr.startsWith("lycée") && !addr.startsWith("cité scolaire")){
-		addr = "lycée "+addr
+}
+geojsonEducation << "]}\n"
+
+def parseOther(def folder, def geojsonEducation, def prefix){
+	assert folder
+	assert folder.Placemark.size() > 0
+
+	def i=1
+	for(placemark in folder.Placemark) {
+		def geojsonStr = ''
+		if(empty){
+			empty = false
+		}
+		else{
+			geojsonStr += ','
+		}
+		def coordinates = placemark.Point.coordinates
+
+		geojsonStr += '{"type":"Feature","properties":{'
+		geojsonStr += '"Id":"mobilisatione3c_' + prefix + '_' + i + '",'
+		geojsonStr += '"Secteur":"Education",'
+		geojsonStr += '"Titre":"Mobilisation E3C : ' + placemark.name.text().trim() + '",'
+		geojsonStr += '"Description":"' + placemark.description.trim() + '",'
+		geojsonStr += '"Type":"Mobilisation",'
+		geojsonStr += '"Motif":"E3C",'
+		geojsonStr += '"Debut":"",'
+		geojsonStr += '"Fin":"",'
+		geojsonStr += '"Source":"Pour en savoir plus, consultez le site https://frama.link/carte-resistances-e3c du collectif \\\"Stop Bac Blanquer - Stop E3C\\\" dont sont issues les données"'
+		geojsonStr += '},"geometry":{"type":"Point","coordinates":['
+		geojsonStr += coordinates
+		geojsonStr += ']}}\n'
+		geojsonEducation << geojsonStr
+		i++
 	}
-	features = query(addr.replaceAll(" ", "%20"))
-	if(!features){
-		features = query(addr.replaceAll("lycée", "lycée polyvalent").replaceAll(" ", "%20"))
+}
+
+def parseLycee(def folder, def geojsonEducation){
+	assert folder
+	assert folder.Placemark.size() > 0
+
+	def i=1
+	for(placemark in folder.Placemark) {
+		def geojsonStr = ''
+		if(empty){
+			empty = false
+		}
+		else{
+			geojsonStr += ','
+		}
+		def addr = (placemark.name.text()+","+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll(" d ", " d'").replaceAll("lycée hôtelier ", "lycée ").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
+		if(!addr.startsWith("lycée") && !addr.startsWith("cité scolaire")){
+			addr = "lycée "+addr
+		}
+		features = query(addr.replaceAll(" ", "%20"))
 		if(!features){
-			features = query(addr.replaceAll("lycée", "lycée technique").replaceAll(" ", "%20"))
+			features = query(addr.replaceAll("lycée", "lycée polyvalent").replaceAll(" ", "%20"))
 			if(!features){
-				features = query(addr.replaceAll("lycée", "lycée professionnel").replaceAll(" ", "%20"))
+				features = query(addr.replaceAll("lycée", "lycée technique").replaceAll(" ", "%20"))
 				if(!features){
-					features = query(addr.replaceAll("lycée", "lycée polyvalent et professionnel").replaceAll(" ", "%20"))
+					features = query(addr.replaceAll("lycée", "lycée professionnel").replaceAll(" ", "%20"))
 					if(!features){
-						features = query(addr.replaceAll("lycée", "lycée professionnel et polyvalent").replaceAll(" ", "%20"))
+						features = query(addr.replaceAll("lycée", "lycée polyvalent et professionnel").replaceAll(" ", "%20"))
 						if(!features){
-							features = query(addr.replaceAll("lycée", "lycée général et technologique").replaceAll(" ", "%20"))
+							features = query(addr.replaceAll("lycée", "lycée professionnel et polyvalent").replaceAll(" ", "%20"))
 							if(!features){
-								features = query(addr.replaceAll("lycée", "lycée international").replaceAll(" ", "%20"))
+								features = query(addr.replaceAll("lycée", "lycée général et technologique").replaceAll(" ", "%20"))
 								if(!features){
-									features = query(addr.replaceAll("lycée", "cité scolaire").replaceAll(" ", "%20"))
+									features = query(addr.replaceAll("lycée", "lycée international").replaceAll(" ", "%20"))
 									if(!features){
-										features = query(addr.replaceAll("\\(.*\\)", "").replaceAll(" ", "%20"))
+										features = query(addr.replaceAll("lycée", "cité scolaire").replaceAll(" ", "%20"))
 										if(!features){
-											println "Error on : "+addr
-											continue
+											features = query(addr.replaceAll("\\(.*\\)", "").replaceAll(" ", "%20"))
+											if(!features){
+												println "Error on : "+addr
+												continue
+											}
 										}
 									}
 								}
@@ -76,35 +118,34 @@ for(placemark in folder.Placemark) {
 				}
 			}
 		}
-	}
-	def f = features[0]
-	def geometry = f.geometry
-	def bbox = f.bbox[2]
-	def coordinates
-	if(geometry.type == "Point"){
-		coordinates = geometry.coordinates[0]+","+geometry.coordinates[1]
-	}
-	else if(geometry.type == "Polygon"){
-		coordinates = ((bbox[0]-bbox[2])/2)+","+((bbox[1]-bbox[3])/2)
-	}
+		def f = features[0]
+		def geometry = f.geometry
+		def bbox = f.bbox[2]
+		def coordinates
+		if(geometry.type == "Point"){
+			coordinates = geometry.coordinates[0]+","+geometry.coordinates[1]
+		}
+		else if(geometry.type == "Polygon"){
+			coordinates = ((bbox[0]-bbox[2])/2)+","+((bbox[1]-bbox[3])/2)
+		}
 
-	geojsonStr += '{"type":"Feature","properties":{'
-	geojsonStr += '"Id":"mobilisatione3c_' + i + '",'
-	geojsonStr += '"Secteur":"Education",'
-	geojsonStr += '"Titre":"Mobilisation E3C : ' + placemark.name.text().trim() + '",'
-	geojsonStr += '"Description":"' + placemark.ExtendedData.Data[6].value.text().trim() + '",'
-	geojsonStr += '"Type":"Mobilisation",'
-	geojsonStr += '"Motif":"E3C",'
-	geojsonStr += '"Debut":"' + placemark.ExtendedData.Data[3].value.text().trim() + '",'
-	geojsonStr += '"Fin":"",'
-	geojsonStr += '"Source":"Pour en savoir plus, consultez le site https://frama.link/carte-resistances-e3c du collectif \\\"Stop Bac Blanquer - Stop E3C\\\" dont sont issues les données"'
-	geojsonStr += '},"geometry":{"type":"Point","coordinates":['
-	geojsonStr += coordinates
-	geojsonStr += ']}}\n'
-	geojsonEducation << geojsonStr
-	i++
+		geojsonStr += '{"type":"Feature","properties":{'
+		geojsonStr += '"Id":"mobilisatione3c_' + i + '",'
+		geojsonStr += '"Secteur":"Education",'
+		geojsonStr += '"Titre":"Mobilisation E3C : ' + placemark.name.text().trim() + '",'
+		geojsonStr += '"Description":"' + placemark.ExtendedData.Data[6].value.text().trim() + '",'
+		geojsonStr += '"Type":"Mobilisation",'
+		geojsonStr += '"Motif":"E3C",'
+		geojsonStr += '"Debut":"' + placemark.ExtendedData.Data[3].value.text().trim() + '",'
+		geojsonStr += '"Fin":"",'
+		geojsonStr += '"Source":"Pour en savoir plus, consultez le site https://frama.link/carte-resistances-e3c du collectif \\\"Stop Bac Blanquer - Stop E3C\\\" dont sont issues les données"'
+		geojsonStr += '},"geometry":{"type":"Point","coordinates":['
+		geojsonStr += coordinates
+		geojsonStr += ']}}\n'
+		geojsonEducation << geojsonStr
+		i++
+	}
 }
-geojsonEducation << "]}\n"
 
 def query(def data){
 	def jsonSlurper = new JsonSlurper()
