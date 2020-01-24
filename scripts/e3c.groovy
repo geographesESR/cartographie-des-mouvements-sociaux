@@ -31,6 +31,7 @@ for(int i=0; i<kml.Document.Folder.size();i++){
 	}
 	else{
 		folder = kml.Document.Folder[i]
+		println kml.Document.Folder[i].name.text().split()[0].toLowerCase()
 		parseOther(folder, geojsonEducation, empty, kml.Document.Folder[i].name.text().split()[0].toLowerCase())
 	}
 }
@@ -42,6 +43,7 @@ def parseOther(def folder, def geojsonEducation, def empty, def prefix){
 
 	def i=1
 	for(placemark in folder.Placemark) {
+		println placemark.name.text()
 		def geojsonStr = ''
 		if(empty){
 			empty = false
