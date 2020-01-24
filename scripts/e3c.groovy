@@ -89,7 +89,7 @@ def parseLycee(def folder, def geojsonEducation, def empty){
 			continue
 		}
 		name.replaceAll("francais", "français")
-		def addr = (name+", "+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll(" d ", " d'").replaceAll("lycée hôtelier ", "lycée ").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
+		def addr = (name+", "+placemark.ExtendedData.Data[2].value.text()).toLowerCase().replaceAll("([0-9] ?){5}", "").replaceAll("dr.", "docteur").replaceAll(" d ", " d'").replaceAll("lycée hôtelier ", "lycée ").replaceAll("lycées ", "lycée ").replaceAll("lycee ", "lycée ").replaceAll("lycée international ", "lycée ").replaceAll("lgt ", "lycée ").replaceAll("lpo ", "lycée ").replaceAll("lyc ", "lycée ")
 		if(!addr.startsWith("lycée") && !addr.startsWith("cité scolaire")){
 			addr = "lycée "+addr
 		}
