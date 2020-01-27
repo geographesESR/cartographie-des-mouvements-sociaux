@@ -15,7 +15,7 @@ jobs:
           ref: 'master'
       - name: Create local changes
         run: |
-          git merge PR
+          git checkout -b PR
           git config --local user.email "geographesESR@protonmail.com"
           git config --local user.name "geographesESR"
           bash scripts/extraction.sh
