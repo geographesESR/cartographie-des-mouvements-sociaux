@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: 'PR'
+          ref: 'master'
       - name: Create local changes
         run: |
-          git merge master
+          git merge PR
           git config --local user.email "geographesESR@protonmail.com"
           git config --local user.name "geographesESR"
           bash scripts/extraction.sh
