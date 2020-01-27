@@ -17,7 +17,7 @@ jobs:
         run: |
           git checkout PR
           git pull origin master
-          git merge master
+          git merge origin/master
           git config --local user.email "geographesESR@protonmail.com"
           git config --local user.name "geographesESR"
           bash scripts/extraction.sh
