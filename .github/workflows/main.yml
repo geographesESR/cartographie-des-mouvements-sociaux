@@ -19,7 +19,7 @@ jobs:
           git config --local user.name "geographesESR"
           git checkout PR
           git pull origin PR
-          git pull origin master
+          git pull origin master  --allow-unrelated-histories
           git merge origin/master
           bash scripts/extraction.sh
           git add *
